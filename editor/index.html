@@ -1,0 +1,538 @@
+<html>
+    <head>
+        <title>s Editor</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: Roboto, Arial;
+            }
+            #output {
+                width: 600px;
+                height: 300px;
+                border: 2px solid black;
+                background-color: #eee;
+                font-family: Monospace;
+                font-size: 1em;
+                color: black;
+            }
+            button {
+                border-radius: 5px;
+                border: 1px solid #999;
+                padding: 6px;
+                background-color: white;
+                font-size: 15px;
+            }
+            #aContainer {
+                margin-bottom: 3em;
+            }
+            .schema {
+                position: absolute;
+                background-color: lime;
+                border-top: 1px solid green;
+                border-bottom: 1px solid green;
+                text-decoration: none;
+                color: black;
+                text-align: center;
+                margin: 0px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: small;
+                box-sizing: border-box;
+                width: 100px;
+            }
+            #schemaContainer {
+                position: relative;
+            }
+            .schemaVerticalLine {
+                position: absolute;
+                background-color: black;
+                width: 2px;
+                z-index: 1;
+            }
+            .schemaHorizontalLine {
+                position: absolute;
+                background-color: black;
+                height: 2px;
+                width: 507px;
+            }
+            #lessonInfo button {
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                float: right;
+                margin: 5px;
+                margin-top: 0px;
+                font-size: xx-large;
+            }
+            #lessonInfo {
+                border: 2px solid green;
+                width: 300px;
+                padding-left: 10px;
+                background-color: lime;
+                border-radius: 10px;
+                z-index: 1;
+                box-shadow: black 1px 1px 10px;
+                position: fixed;
+                top: 33%;
+                left: 50%;
+                margin-left: -150px;
+                display: block;
+            }
+            #lessonInfo--content input, #lessonInfo--content select {
+                background-color: transparent;
+                color: black;
+                border: 0px;
+                font-size: 1em;
+                font-weight: bold;
+                font-family: Roboto, Arial;
+            }
+        </style>
+        <script>
+            var mdata = [
+        {
+          lunch: 3,
+          lessons:[
+            {
+              start     : 480,
+              end       : 570,
+              subject   : "Matematik",
+              classroom : "G38",
+              material  : "Matteböcker"
+            },
+            {
+              start     : 585,
+              end       : 645,
+              subject   : "NO",
+              classroom : "N08"
+            }
+          ]
+        },
+        {
+          lunch: 3,
+          lessons:[
+            {
+              start     : 535,
+              end       : 605,
+              subject   : "Spanska",
+              classroom : "G15",
+              material  : "Spanska mapp"
+            },
+            {
+              start     : 610,
+              end       : 650,
+              subject   : "Matematik",
+              classroom : "G13",
+              material  : "Matteböcker"
+            }
+          ]
+        },
+        {
+          lunch: 2,
+          lessons:[
+            {
+              start     : 515,
+              end       : 585,
+              subject   : "Teknik",
+              classroom : "T20"
+            },
+            {
+              start     : 595,
+              end       : 660,
+              subject   : "Matematik",
+              classroom : "G15",
+              material  : "Matteböcker"
+            }
+          ]
+        },
+        {
+          lunch: 2,
+          lessons:[
+            {
+              start     : 515,
+              end       : 575,
+              subject   : "NO",
+              classroom : "N08",
+              material  : "Fysikboken"
+            },
+            {
+              start     : 595,
+              end       : 660,
+              subject   : "Svenska",
+              classroom : "G31"
+            }
+          ]
+        },
+        {
+          lunch: 2,
+          lessons:[
+            {
+              start     : 510,
+              end       : 570,
+              subject   : "Engelska",
+              classroom : "G18",
+              material  : "Engelska Bok"
+            },
+            {
+              start     : 600,
+              end       : 655,
+              subject   : "Idrott",
+              classroom : "Hall A",
+              material  : "Idrottskläder" 
+            }
+          ]
+        }
+      ]
+
+            var editingLesson;
+            var editingLessonPath = [];
+            var dayNames = [
+                "Måndag",
+                "Tisdag",
+                "Onsdag",
+                "Torsdag",
+                "Fredag",
+            ];
+
+            function load() {
+
+                generateOutput();
+
+            }
+            function generateOutput() {
+
+                const OFFSET = 440;
+                var schemaContainer = document.getElementById('schemaContainer');
+                var len = 300;
+
+                var white_space = 4;
+                if (document.getElementById('minified').checked) white_space = 0;
+
+                var all = document.getElementById('schemaContainer').children;
+
+                for (var i  = all.length-1; i > 0; i--) {
+
+                    if ((all[i].className == 'schema') || (all[i].className == 'schemaVerticalLine')) {
+
+                        all[i].remove();
+
+                    }
+
+                }
+
+                for (var day in mdata) {
+
+                    mdata[day].lessons.sort(function(a,b) {
+                        if (a.start > b.start) return 1;
+                        if (a.start < b.start) return -1;
+                        return 0;
+                    });
+
+                    for (var less in mdata[day].lessons) {
+
+
+                        var lesson = mdata[day].lessons[less];
+
+                        if (!lesson) continue;
+
+                        var toAdd = document.createElement('a');
+
+                        toAdd.className = 'schema';
+                        toAdd.style.top = lesson.start - OFFSET + "px";
+                        toAdd.style.left = day * 102 + 1 + "px";
+                        toAdd.style.height = lesson.end - lesson.start + "px";
+                        toAdd.title = lesson.subject;
+                        toAdd.innerHTML = lesson.subject + '<br>' + lesson.classroom;
+                        toAdd.href = "javascript:showLessonInfo("+ day +", "+ less +")"
+
+                        schemaContainer.appendChild(toAdd);
+
+                        if (lesson.end - OFFSET > len) len = lesson.end - OFFSET;
+
+                    }
+
+                }
+
+                for (var i = 0; i < mdata.length+1; i++) {
+
+                    var toAdd = document.createElement('div');
+
+                    toAdd.className = "schemaVerticalLine";
+                    toAdd.style.height = len +"px";
+                    if (i != mdata.length) toAdd.style.left = 102 * i - 1 + "px";
+                    else toAdd.style.left = 102 * i - 3 + "px";
+
+                    document.getElementById('schemaContainer').appendChild(toAdd);
+
+                }
+
+                document.getElementById("schemaBottom").style.top = len + "px";
+                document.getElementById("schemaContainer").style.height = len + "px";
+
+                document.getElementById('output').value = JSON.stringify(mdata, null, white_space);
+
+            }
+            function showLessonInfo(day,less) {
+
+                document.getElementById('lessonInfo').style.display = 'block';
+
+                var content = "";
+                var lesson = mdata[day].lessons[less];
+
+                editingLesson = lesson;
+                editingLessonPath = [day, less];
+
+                content += "Ämne: <input oninput=\"updateLesson(this)\" name=\"subject\" value=\""+ lesson.subject +"\"><br>";
+                content += "Sal:  <input oninput=\"updateLesson(this)\" name=\"classroom\" value=\""+ lesson.classroom +"\"><br>";
+                content += "Börjar:  <input oninput=\"updateLesson(this)\" type=\"time\" name=\"start\" value=\""+ toClockTime(lesson.start,true) +"\"><br>";
+                content += "Slutar:  <input oninput=\"updateLesson(this)\" type=\"time\" name=\"end\" value=\""+ toClockTime(lesson.end,true) +"\"><br>";
+                content += "Längd: <b id=\"lessonInfo--length\">"+ format(lesson.end - lesson.start) +"</b><br>";
+                content += "Dag:  <select onchange=\"updateLesson(this)\" name=\"day\" value=\""+ day +"\"><option value=\"0\">Måndag</option><option value=\"1\">Tisdag</option><option value=\"2\">Onsdag</option><option value=\"3\">Torsdag</option><option value=\"4\">Fredag</option></select><br>";
+                if (lesson.material) content += "Material:  <input oninput=\"updateLesson(this)\" name=\"material\" value=\""+ lesson.material +"\"><br>";
+                else content += "Material:  <input oninput=\"updateLesson(this)\" name=\"material\"><br>";
+                if (lesson.note) content += "Info:  <input oninput=\"updateLesson(this)\" name=\"note\" value=\""+ lesson.note +"\"><br>";
+                else content += "Info:  <input oninput=\"updateLesson(this)\" name=\"note\"><br>";
+
+                var cont = document.getElementById('lessonInfo--content');
+                cont.innerHTML = content
+                cont.getElementsByTagName('select')[0].value = day;
+
+            }
+            function addLesson() {
+
+                mdata[0].lessons.push({subject:"Ny lektion",start:480,end:540,classroom:""});
+
+            }
+            function updateLesson(elem) {
+
+                switch (elem.name) {
+
+                    case "subject":
+                        editingLesson.subject = elem.value;
+                        break;
+                    case "classroom":
+                        editingLesson.classroom = elem.value;
+                        break;
+                    case "start":
+                        editingLesson.start = elem.value.substr(0,2) * 60 + elem.value.substr(3,5)*1;
+                        break;
+                    case "end":
+                        editingLesson.end = elem.value.substr(0,2) * 60 + elem.value.substr(3,5)*1;
+                        break;
+                    case "day":
+                        var len = mdata[elem.value-0].lessons.push(mdata[editingLessonPath[0]].lessons[editingLessonPath[1]]);
+                        delete mdata[editingLessonPath[0]].lessons[editingLessonPath[1]];
+                        showLessonInfo(elem.value-0, len-1);
+                        break;
+                    case "material":
+                        if (!elem.value) editingLesson.material = undefined;
+                        else editingLesson.material = elem.value;
+                        break;
+                    case "note":
+                        if (!elem.value) editingLesson.note = undefined;
+                        else editingLesson.note = elem.value;
+                        break;
+
+                }
+
+                generateOutput();
+                document.getElementById('lessonInfo--length').innerHTML = format(editingLesson.end - editingLesson.start);
+
+            }
+            function format(minutes) {
+
+                var hourPlural = "timmar";
+                var minPlural = "minuter";
+
+                if ((minutes % 60) == 1) {
+
+                    minPlural = "minut";
+
+                }
+
+                if ((Math.floor(minutes/60)) == 1) {
+
+                    hourPlural = "timme";
+
+                }
+
+                if (minutes >= 60) {
+
+                    if ((minutes % 60) == 0) {
+
+                        return (Math.floor(minutes/60))+" "+ hourPlural;
+
+                    } else {
+
+                        return (Math.floor(minutes/60))+" "+ hourPlural + " och " +(minutes%60) +" "+ minPlural;
+
+                    }
+
+                } else {
+
+                    return minutes +" "+ minPlural;
+
+                }
+            }
+            /*
+            * @param {boolean} forceTwoDigits - If true the hours will always be 2 digits. Ex. 9:32 --> 09:32
+            */
+            function toClockTime(minutes,forceTwoDigits) {
+                var hour = Math.floor(minutes/60).toString();
+                var min = (minutes%60).toString();
+
+                if (min.length == 1) min = "0"+ min;
+                if (forceTwoDigits && (hour.length == 1)) hour = "0"+ hour;
+
+                return hour +":"+ min;
+            }
+            function loadJson() {
+
+                var loadJsonElem = document.getElementById('loadJson');
+
+                mdata = JSON.parse(loadJsonElem.value);
+                loadJsonElem.value = "";
+
+                generateOutput();
+
+            }
+
+
+            function convert() {
+                var console = document.getElementById("convertConsole");
+                var value = document.getElementById("convertTextarea").value;
+                var json;
+                try {
+                    json = JSON.parse(value);
+                } catch(e) {
+                    console.appendChild(document.createTextNode("ERROR: Failed to load JSON, \n"+ e));
+                    return;
+                }
+                var out = [{lessons:[]},{lessons:[]},{lessons:[]},{lessons:[]},{lessons:[]}];
+                for (var lesson of json) {
+                    var day = new Date(lesson.start).getDay();
+                    var less = {};
+
+                    less.subject = getSubject(lesson.title);
+                    less.start = fromClockTime(lesson.startTime);
+                    less.end = fromClockTime(lesson.endTime);
+                    less.classroom = lesson.notes ? getClassroom(lesson.notes.roomInfo) : "";
+
+                    out[day - 1].lessons.push(less);
+                }
+
+                mdata = out;
+                generateOutput();
+            }
+            function getSubject(subject) {
+                switch(subject) {
+                    case "MA": return "Matematik";
+                    case "SV": return "Svenska";
+                    case "EN": return "Engelska";
+                    case "SP": return "Spanska";
+                    case "IDH": return "Idrott";
+                    case "TK": return "Teknik";
+                    case "PROFIL": return "Profil";
+                    case "BL": return "Bild";
+                    case "SO": return "SO";
+                    case "NO": return "NO";
+                    case "Klassråd": return "Klassråd";
+                    case "NO-LAB": return "NO-Lab";
+                    case "HKK": return "Hemkunskap";
+                    case "Studieverkstad": return "Studieverkstad";
+                    default:
+                        document.getElementById("convertConsole").appendChild(document.createTextNode("Unknown subject "+ subject +"\n"));
+                        return subject;
+                }
+            }
+            function getClassroom(classroom) {
+                switch(classroom) {
+                    case "Bildsal": return "Bildsalen";
+                    case "HKK1": return "Hemkunskapsalen";
+                    case "HallA": return "Hall A";
+                    default: return classroom;
+                }
+            }
+            function fromClockTime(time) {
+                var split = time.split(":");
+                if (!split.length) {
+                    document.getElementById("convertConsole").appendChild(document.createTextNode("Invalid time "+ time +"\n"));
+                    return;
+                }
+                var hours = parseInt(split[0]);
+                var minutes = parseInt(split[1]);
+                return hours * 60 + minutes;
+            }
+
+
+            function compare() {
+                var val1 = document.getElementById("compare1").value;
+                var val2 = document.getElementById("compare2").value;
+                var json1 = JSON.parse(val1);
+                var json2 = JSON.parse(val2);
+
+                var differances = [];
+
+                for (var i in json1) {
+                    var day1 = json1[i];
+                    var day2 = json2[i];
+                    for (var j in day1.lessons) {
+                        var lesson1 = day1.lessons[j];
+                        var lesson2 = day2.lessons[j];
+                        var lesson1Path = `json1[${i}].lessons[${j}] ${json1[i].lessons[j] ? "("+ json1[i].lessons[j].subject +") " : ""}`;
+                        var lesson2Path = `json2[${i}].lessons[${j}] ${json2[i].lessons[j] ? "("+ json2[i].lessons[j].subject +") " : ""}`;
+                        if (!lesson2) {
+                            differances.push(lesson2Path + " does not exist");
+                            continue;
+                        }
+                        if (lesson1.start != lesson2.start) differances.push(lesson1Path + lesson1.start + " != "+ lesson2.start);
+                        if (lesson1.end != lesson2.end) differances.push(lesson1Path + lesson1.end + " != " + lesson2.end);
+                        if (lesson1.subject != lesson2.subject) differances.push(lesson1Path + lesson1.subject + " != " + lesson2.subject);
+                        if (lesson1.classroom != lesson2.classroom) differances.push(lesson1Path + lesson1.classroom + " != " + lesson2.classroom);
+                    }
+                }
+                console.log(differances);
+            }
+        </script>
+    </head>
+
+    <body onload="load();">
+        <textarea id="loadJson"></textarea>
+        <button onclick="loadJson();">Load schema from JSON</button>
+        <div id="aContainer">
+            <button id="addLesson" onclick="addLesson();generateOutput();">Add lesson</button>
+            <div id="schemaContainer" style="width:520px;height:500px;">
+                <div class="schemaHorizontalLine"></div>
+                <div class="schemaHorizontalLine" style="top: 38px;"></div>
+                <div class="schemaHorizontalLine" style="top: 300px; width: 510px; left: -1px;" id="schemaBottom"></div>
+
+                <p style="position: absolute;left: 20px;top: -5px;">Måndag</p>
+                <p style="position: absolute;left: 130px;top: -5px;">Tisdag</p>
+                <p style="position: absolute;left: 230px;top: -5px;">Onsdag</p>
+                <p style="position: absolute;left: 330px;top: -5px;">Torsdag</p>
+                <p style="position: absolute;left: 435px;top: -5px;">Fredag</p>
+            </div>
+        </div>
+        <input type="checkbox" id="minified" onchange="generateOutput()">
+        <label for="minified">Minified</label>
+        <p>Output:</p>
+        <textarea disabled="disabled" id="output"></textarea>
+
+       <div id="lessonInfo">
+           <button onclick="this.parentNode.style.display = 'none';">&times;</button>
+           <p id="lessonInfo--content"></p>
+       </div>
+
+       <h1>Converter</h1>
+       <textarea style="width: 800px; height: 400px;" id="convertTextarea"></textarea>
+       <button onclick="convert();">Convert</button>
+       <pre id="convertConsole"></pre>
+       <div style="margin-bottom: 100px;"></div>
+
+       <h1>Comparer</h1>
+       <textarea style="width: 800px; height: 400px;" id="compare1"></textarea>
+       <textarea style="width: 800px; height: 400px;" id="compare2"></textarea>
+       <button onclick="compare();">Compare</button>
+    </body>
+</html>
