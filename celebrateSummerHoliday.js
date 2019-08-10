@@ -82,7 +82,7 @@ setInterval(function() {
     }
 }, 1000 / 30);
 
-function celebreateGo() {
+function celebrateGo() {
 
     var times = 150;
     var interval = setInterval(function() {
@@ -102,12 +102,14 @@ function celebreateGo() {
     if (!container) {
         container = document.createElement("div");
         container.id = "particleContainer";
+        container.style.pointerEvents = "none";
         document.body.appendChild(container);
     }
     ballonContainer = document.getElementById("ballonContainer");
     if (!ballonContainer) {
         ballonContainer = document.createElement("div");
         ballonContainer.id = "ballonContainer";
+        ballonContainer.style.pointerEvents = "none";
         document.body.appendChild(ballonContainer);
     }
 
@@ -120,6 +122,7 @@ function celebreateGo() {
         toAdd.style.left = "50%";
         toAdd.style.marginLeft = "-125px";
         toAdd.style.zIndex = 9;
+        toAdd.style.pointerEvents = "none";
         toAdd.innerHTML = `<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" style="margin: auto;display: block;shape-rendering: auto;" width="290" height="250" preserveAspectRatio="xMidYMid">
 <style type="text/css">
   text {

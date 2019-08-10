@@ -1,0 +1,57 @@
+[
+    {
+        "lunch": null,
+        "lessons": [
+            {
+                "start": 600,
+                "end": 660,
+                "subject": "?",
+                "classroom": "?"
+            }
+        ]
+    },
+    {
+        "lunch": null,
+        "lessons": [
+            {
+                "start": 600,
+                "end": 660,
+                "subject": "?",
+                "classroom": "?"
+            }
+        ]
+    },
+    {
+        "lunch": null,
+        "lessons": [
+            {
+                "start": 600,
+                "end": 660,
+                "subject": "?",
+                "classroom": "?"
+            }
+        ]
+    },
+    {
+        "lunch": null,
+        "lessons": [
+            {
+                "start": 600,
+                "end": 660,
+                "subject": "?",
+                "classroom": "?"
+            }
+        ]
+    },
+    {
+        "lunch": null,
+        "lessons": [
+            {
+                "start": 600,
+                "end": 660,
+                "subject": "?",
+                "classroom": "?"
+            }
+        ]
+    }
+]

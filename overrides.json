@@ -1,0 +1,16 @@
+{
+  "lessons" : [],
+  "days"    : [
+    {
+      "start"     : 600,
+      "end"       : 660,
+      "subject"   : "Samling (skolstart)",
+      "classroom" : "Aulan",
+      "day": 0,
+      "date": {
+        "month": 8,
+        "date": 19
+      }
+    }
+  ]
+}
