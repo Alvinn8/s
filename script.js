@@ -145,8 +145,10 @@ window.onkeydown = function(e) {
 
 function calcMinutes() {
 
+  updatedAt = nowTime();
+
   if (new Date().getTime() > new Date("Jun 13 2019 09:00:00").getTime() && new Date().getTime() < new Date("Aug 19 2019").getTime()) celebrateGo();
-  
+
   var lessons = mdata[0].lessons;
 
   if ((day > 4) || (day < 0)) {
@@ -548,7 +550,8 @@ function makeschedule() {
     }
     document.getElementById('scheduleContainer').appendChild(toAdd);
   }
-  document.getElementById('showing').setSafeText("Visar "+ totalLessons +"/"+ totalLessons);
+  // document.getElementById('showing').setSafeText("Visar "+ totalLessons +"/"+ totalLessons);
+  scheduleSearch(); // Updates the "showing" text
 }
 function scheduleSearch() {
   var scheduleDiv = document.getElementById('scheduleContainer');
