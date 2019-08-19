@@ -7,8 +7,10 @@ var boredLinks = allBoredLinks.slice(0); // clone allBoredLinks
 var shortcutMode = 0;
 var lunches = [];
 //var messages = {constant:[{message:"Schemat har ändrats men den här sidan har fortfarande det gamla. Ska lägga in det nya snart",backcolor:"pink",bordercolor:"red"}],date:[{date:[8,6],message:"Idag börjar profilerna"}]}
+
  // First index of date is month, second is date
-var messages = {constant:[],date:[/*{date:[6,13], message:"Skolavslutning, \"Sommaravslutning i aulan kl: 09:00-09:30/45. Alla klasser träffas i klassrummen kl 0845 och går gemensamt till aulan kl 0900, därefter betygsutdelning i klassrummen.\", från kalender i infomentor"},*/{date:[6,12],message:"Hemkunskapen börjar 12:10 istället för 11:45"}]}
+var messages = {constant:[{message:"Utvecklingssamtal 28 Augusti"},{message:"Skolfoto 28-30 Augusti"}],date:[/*{date:[6,13], message:"Skolavslutning, \"Sommaravslutning i aulan kl: 09:00-09:30/45. Alla klasser träffas i klassrummen kl 0845 och går gemensamt till aulan kl 0900, därefter betygsutdelning i klassrummen.\", från kalender i infomentor"},*/{date:[6,12],message:"Hemkunskapen börjar 12:10 istället för 11:45"}]}
+
 var state = Object.freeze({
     "SCHOOL_OVER" : Symbol("SCHOOL_OVER"),
     "WEEKEND"     : Symbol("WEEKEND"),
@@ -328,7 +330,7 @@ function load() {
     }
     for (var dayOverride of overrides.days) {
       dayOverride.isOverrider = true;
-      mdata[mdataWeekDay].lessons.push(dayOverride);
+      mdata[dayOverride.day].lessons.push(dayOverride);
     }
   } catch(e) {
     displayError("Någonting gick fel när överskridningen(overrides) skulle laddas, "+ e);
@@ -489,7 +491,7 @@ function setMats() {
   }
 }
 function makeschedule() {
-  var OFFSET = 440;
+  var OFFSET = 430; // Was 440
   var totalLessons = 0;
   var len = 515;
   function addElement(less, day, index, overridePath) {
@@ -777,12 +779,21 @@ function stateChanged() {
 }
 function getWeek() {
     var date = new Date();
-    var date2 = new Date();
+    date.setMonth(0);
+    date.setDate(1);
+    date.setHours(0);
+    date.setMinutes(0);
+    date.setSeconds(0);
+    var day = date.getDay() - 1;
+    if (day == -1) day = 6; // Sunday, JavaScript date counts sundays as the first day of the week
+    date.setTime(date.getTime() - day * 24 * 60 * 60 * 1000);
+    
+    var now = new Date();
     for (var i = 0; i < 53; i++) {
-        date2 = new Date(date2.getTime() - 1000 * 60 * 60 * 24 * 7); // Subtract a week
-        if (date.getYear() != date2.getYear()) {
-            return i + 1; // Computers count from 0
-         }
+        date.setTime(date.getTime() + 7 * 24 * 60 * 60 * 1000);
+        if (date.getTime() > now.getTime()) {
+            return i + 1;
+        }
     }
 }
 function updateHideOverrides() {

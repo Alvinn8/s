@@ -1,56 +1,192 @@
 [
     {
-        "lunch": null,
+        "lunch": 3,
         "lessons": [
             {
-                "start": 540,
-                "end": 600,
-                "subject": "?",
-                "classroom": "?"
+                "start": 510,
+                "end": 565,
+                "subject": "Matematik",
+                "classroom": "G39"
+            },
+            {
+                "start": 575,
+                "end": 645,
+                "subject": "NO / Teknik",
+                "classroom": "N08"
+            },
+            {
+                "subject": "Idrott",
+                "start": 660,
+                "end": 720,
+                "classroom": "Hall A",
+                "material": "Idrottskläder"
+            },
+            {
+                "subject": "Hemkunskap",
+                "start": 780,
+                "end": 920,
+                "classroom": "T15"
             }
         ]
     },
     {
-        "lunch": null,
+        "lunch": 4,
         "lessons": [
             {
+                "start": 480,
+                "end": 535,
+                "subject": "Idrott Studieverkstad",
+                "classroom": "Rörelserummet"
+            },
+            {
                 "start": 540,
-                "end": 600,
-                "subject": "?",
-                "classroom": "?"
+                "end": 605,
+                "subject": "SO",
+                "classroom": "G39"
+            },
+            {
+                "subject": "Matematik",
+                "start": 620,
+                "end": 665,
+                "classroom": "G36"
+            },
+            {
+                "subject": "NO / Teknik",
+                "start": 675,
+                "end": 730,
+                "classroom": "N08"
+            },
+            {
+                "subject": "Engelska",
+                "start": 785,
+                "end": 840,
+                "classroom": "G31"
+            },
+            {
+                "subject": "Matematik-PL",
+                "start": 845,
+                "end": 895,
+                "classroom": "G39",
+                "note": "Jag vet inte vad PL betyder"
+            },
+            {
+                "subject": "Studieverkstad",
+                "start": 900,
+                "end": 960,
+                "classroom": ""
             }
         ]
     },
     {
-        "lunch": null,
+        "lunch": 3,
         "lessons": [
             {
-                "start": 540,
-                "end": 600,
-                "subject": "?",
-                "classroom": "?"
+                "start": 510,
+                "end": 565,
+                "subject": "SO",
+                "classroom": "G39"
+            },
+            {
+                "start": 580,
+                "end": 640,
+                "subject": "Musik / NO Labb",
+                "classroom": "N07 / N08"
+            },
+            {
+                "subject": "Svenska",
+                "start": 650,
+                "end": 705,
+                "classroom": "G38"
+            },
+            {
+                "subject": "Spanska",
+                "start": 755,
+                "end": 835,
+                "classroom": "G15"
+            },
+            {
+                "subject": "Studieverkstad",
+                "start": 840,
+                "end": 900,
+                "classroom": ""
             }
         ]
     },
     {
-        "lunch": null,
+        "lunch": 3,
         "lessons": [
             {
+                "start": 505,
+                "end": 535,
+                "subject": "Klassråd",
+                "classroom": "G18"
+            },
+            {
+                "subject": "Spanska",
                 "start": 540,
-                "end": 600,
-                "subject": "?",
-                "classroom": "?"
+                "end": 620,
+                "classroom": "G15"
+            },
+            {
+                "subject": "Bild",
+                "start": 630,
+                "end": 705,
+                "classroom": "Bildsalen"
+            },
+            {
+                "subject": "SO",
+                "start": 750,
+                "end": 815,
+                "classroom": "G39"
+            },
+            {
+                "subject": "Matematik",
+                "start": 820,
+                "end": 875,
+                "classroom": "G39"
+            },
+            {
+                "subject": "Svenska",
+                "start": 885,
+                "end": 945,
+                "classroom": "G38"
             }
         ]
     },
     {
-        "lunch": null,
+        "lunch": 3,
         "lessons": [
             {
                 "start": 540,
-                "end": 600,
-                "subject": "?",
-                "classroom": "?"
+                "end": 595,
+                "subject": "Svenska",
+                "classroom": "G38"
+            },
+            {
+                "start": 610,
+                "end": 670,
+                "subject": "Idrott",
+                "classroom": "Hall A",
+                "material": "Idrottskläder"
+            },
+            {
+                "subject": "Engelska",
+                "start": 690,
+                "end": 755,
+                "classroom": "G38"
+            },
+            {
+                "subject": "Musik",
+                "start": 800,
+                "end": 850,
+                "classroom": "T20, N07",
+                "note": "Jag vet inte varför det finns två klassrum"
+            },
+            {
+                "subject": "NO / Teknik",
+                "start": 860,
+                "end": 930,
+                "classroom": "N08"
             }
         ]
     }
