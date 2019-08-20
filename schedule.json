@@ -63,11 +63,10 @@
                 "classroom": "G31"
             },
             {
-                "subject": "Matematik-PL",
+                "subject": "Matematik Problemlösning",
                 "start": 845,
                 "end": 895,
-                "classroom": "G39",
-                "note": "Jag vet inte vad PL betyder"
+                "classroom": "G39"
             },
             {
                 "subject": "Studieverkstad",

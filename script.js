@@ -9,7 +9,7 @@ var lunches = [];
 //var messages = {constant:[{message:"Schemat har ändrats men den här sidan har fortfarande det gamla. Ska lägga in det nya snart",backcolor:"pink",bordercolor:"red"}],date:[{date:[8,6],message:"Idag börjar profilerna"}]}
 
  // First index of date is month, second is date
-var messages = {constant:[{message:"Utvecklingssamtal 28 Augusti"},{message:"Skolfoto 28-30 Augusti"}],date:[/*{date:[6,13], message:"Skolavslutning, \"Sommaravslutning i aulan kl: 09:00-09:30/45. Alla klasser träffas i klassrummen kl 0845 och går gemensamt till aulan kl 0900, därefter betygsutdelning i klassrummen.\", från kalender i infomentor"},*/{date:[6,12],message:"Hemkunskapen börjar 12:10 istället för 11:45"}]}
+var messages = {constant:[{message:"Skolfoto 28-30 Augusti"}],date:[/*{date:[6,13], message:"Skolavslutning, \"Sommaravslutning i aulan kl: 09:00-09:30/45. Alla klasser träffas i klassrummen kl 0845 och går gemensamt till aulan kl 0900, därefter betygsutdelning i klassrummen.\", från kalender i infomentor"},*/{date:[6,12],message:"Hemkunskapen börjar 12:10 istället för 11:45"}]}
 
 var state = Object.freeze({
     "SCHOOL_OVER" : Symbol("SCHOOL_OVER"),
