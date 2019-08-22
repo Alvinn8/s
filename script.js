@@ -339,6 +339,7 @@ function load() {
   try {
       var params = getParams();
       if (params) {
+        
         if (params.p != undefined) {
           if (params.p == "adam") {
             Object.assign(params,{
@@ -347,9 +348,12 @@ function load() {
               profilSal : "N06... kanske? Jag vet inte... var är det någonstans Adam?"
             });
           } else {
-            console.log('Invalid value for URL paramater \'s\'!');
+            console.warn('Invalid value for URL paramater \'s\'!');
           }
         }
+
+        // TODO: Update these
+        /*
         if (params.s != undefined) {
           if (params.s == "franska") {
             changeLesson(1,0,{subject:"Franska",classroom:"G31",material:undefined});
@@ -367,10 +371,12 @@ function load() {
             console.log('Invalid value for URL paramater \'s\'!');
           }
         }
+        */
         /*if (params.sl != undefined) {
           changeLesson(2,2,{subject:"Syslöjd",classroom:"G47b"});
             document.getElementById('linkSl').value = "Syslöjd";
         }*/
+        /*
         if (params.profil != undefined) {
           changeLesson(3,4, {subject:decodeURIComponent(params.profil)})
           if (params.profil == "Programmering") {
@@ -388,6 +394,10 @@ function load() {
             document.getElementById('linkProfilClassroom').value = decodeURIComponent(params.profilSal);
           }
         }
+        */
+
+        // TODO: Update these
+        /*
         if (params.mod != undefined) {
           mdata[4].lessons[4] = {subject:decodeURIComponent(params.mod),classroom:"<span style=\"color:red\">error</span>",start: toTime(14,25), end:toTime(15, 05)}
           document.getElementById('linkMod').value = "Modersmål";
@@ -399,11 +409,16 @@ function load() {
           changeLesson(4,4, {classroom:decodeURIComponent(params.modSal)})
           document.getElementById('linkModClassroom').value = decodeURIComponent(params.ModSal);
         }
+        */
     
         if (params.gt != undefined) {
-      
           document.getElementById("gt").style.display = "block";
-      
+        }
+
+        if (params.color) {
+          var style = document.createElement("style");
+          style.innerHTML = ".schedule, #lessonInfo { background-color: #"+ params.color +" !important }"; // TODO: Maybe find a way to do this without !important
+          document.head.appendChild(style);
         }
       }
   } catch(e) {
@@ -729,8 +744,17 @@ function linkChange() {
     document.getElementById('linkModName').style.display =  "none";
     document.getElementById('linkModClassroom').style.display =  "none";
   }
+  if (document.getElementById('linkColor').value != "#00ff00") {
+    if (firstParamUsed) {
+      link += "&color="+ document.getElementById('linkColor').value.substr(1);
+    } else {
+      link += "?color="+ document.getElementById('linkColor').value.substr(1);
+    }
+  }
+
   document.getElementById('linkResult').value = link;
-  history.replaceState(null, null, link.substr("https://alvinn8.github.io/s/".length));
+  console.log("New url", link);
+  if (document.URL != link) history.replaceState(null, null, link.substr("https://alvinn8.github.io/s/".length));
 }
 
 function calcSeconds() {
