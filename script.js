@@ -754,7 +754,7 @@ function linkChange() {
 
   document.getElementById('linkResult').value = link;
   console.log("New url", link);
-  if (document.URL != link) history.replaceState(null, null, link.substr("https://alvinn8.github.io/s/".length));
+  if (document.getElementById('linkColor').value == "#00ff00" && document.URL != link) history.replaceState(null, null, link.substr("https://alvinn8.github.io/s/".length));
 }
 
 function calcSeconds() {
