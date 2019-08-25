@@ -1,25 +1,4 @@
 {
   "lessons" : [],
-  "days"    : [
-    {
-      "start"     : 600,
-      "end"       : 660,
-      "subject"   : "Samling (skolstart)",
-      "classroom" : "Aulan",
-      "date": {
-        "month": 8,
-        "date": 19
-      }
-    },
-    {
-      "start": 470,
-      "end": 700,
-      "subject": "Samling inför utflykt",
-      "classroom": "Ekporten",
-      "date": {
-        "month": 8,
-        "date": 20
-      }
-    }
-  ]
+  "days"    : []
 }
