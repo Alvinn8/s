@@ -9,7 +9,7 @@ var lunches = [];
 //var messages = {constant:[{message:"Schemat har ändrats men den här sidan har fortfarande det gamla. Ska lägga in det nya snart",backcolor:"pink",bordercolor:"red"}],date:[{date:[8,6],message:"Idag börjar profilerna"}]}
 
  // First index of date is month, second is date
-var messages = {constant:[{message:"Skolfoto 28-30 Augusti"}],date:[/*{date:[6,13], message:"Skolavslutning, \"Sommaravslutning i aulan kl: 09:00-09:30/45. Alla klasser träffas i klassrummen kl 0845 och går gemensamt till aulan kl 0900, därefter betygsutdelning i klassrummen.\", från kalender i infomentor"},*/{date:[6,12],message:"Hemkunskapen börjar 12:10 istället för 11:45"}]}
+var messages = {constant:[{message:"Skolfoto 28 Augusti kl 10:30-11:10 i Rörelserummet"}],date:[/*{date:[6,13], message:"Skolavslutning, \"Sommaravslutning i aulan kl: 09:00-09:30/45. Alla klasser träffas i klassrummen kl 0845 och går gemensamt till aulan kl 0900, därefter betygsutdelning i klassrummen.\", från kalender i infomentor"},*/{date:[6,12],message:"Hemkunskapen börjar 12:10 istället för 11:45"}]}
 
 var state = Object.freeze({
     "SCHOOL_OVER" : Symbol("SCHOOL_OVER"),
@@ -83,8 +83,8 @@ Node.prototype.addSafeElement = function(tag, text) {
     scheduleXhr.open("GET", "schedule.json");
     scheduleXhr.send();
 
-    var scheduleXhr = new XMLHttpRequest();
-    scheduleXhr.onreadystatechange = function() {
+    var overridesXhr = new XMLHttpRequest();
+    overridesXhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             overrides = JSON.parse(this.responseText);
             overridesLoaded = true;
@@ -92,8 +92,8 @@ Node.prototype.addSafeElement = function(tag, text) {
             checkIfDone();
         }
     }
-    scheduleXhr.open("GET", "overrides.json");
-    scheduleXhr.send();
+    overridesXhr.open("GET", "overrides.json");
+    overridesXhr.send();
 })();
 
 window.onkeydown = function(e) {
@@ -417,8 +417,10 @@ function load() {
 
         if (params.color) {
           var style = document.createElement("style");
-          style.innerHTML = ".schedule, #lessonInfo { background-color: #"+ params.color +" !important }"; // TODO: Maybe find a way to do this without !important
+          style.innerHTML = ".schedule, #lessonInfo, #shortcut { background-color: #"+ params.color +" !important }"; // TODO: Maybe find a way to do this without !important
           document.head.appendChild(style);
+          document.getElementById('linkColor').value = "#" + params.color;
+
         }
       }
   } catch(e) {
@@ -691,7 +693,7 @@ function getLunchFood() {
   document.getElementById('getLunch').style.display = "none";
   alert('error');
 }
-function linkChange() {
+function linkChange(reload) {
   var link = "https://alvinn8.github.io/s/";
   var firstParamUsed = false;
   if (document.getElementById('linkS').value != "Spanska") {
@@ -754,7 +756,8 @@ function linkChange() {
 
   document.getElementById('linkResult').value = link;
   console.log("New url", link);
-  if (document.getElementById('linkColor').value == "#00ff00" && document.URL != link) history.replaceState(null, null, link.substr("https://alvinn8.github.io/s/".length));
+  if (!reload && document.getElementById('linkColor').value == "#00ff00" && document.URL != link) history.replaceState(null, null, link.substr("https://alvinn8.github.io/s/".length));
+  if (reload) location.replace(link.substr("https://alvinn8.github.io/s/".length));
 }
 
 function calcSeconds() {
