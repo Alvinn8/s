@@ -157,6 +157,13 @@
         "lunch": 3,
         "lessons": [
             {
+                "subject": "NO / Teknik",
+                "start": 480,
+                "end": 540,
+                "classroom": "N08",
+                "note": "Jag vet inte exakt när den här lektionen slutar"
+            },
+            {
                 "start": 540,
                 "end": 595,
                 "subject": "Svenska",
@@ -181,12 +188,6 @@
                 "end": 850,
                 "classroom": "T20, N07",
                 "note": "Jag vet inte varför det finns två klassrum"
-            },
-            {
-                "subject": "NO / Teknik",
-                "start": 860,
-                "end": 930,
-                "classroom": "N08"
             }
         ]
     }
