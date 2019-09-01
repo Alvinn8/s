@@ -9,7 +9,7 @@ var lunches = [];
 //var messages = {constant:[{message:"Schemat har ändrats men den här sidan har fortfarande det gamla. Ska lägga in det nya snart",backcolor:"pink",bordercolor:"red"}],date:[{date:[8,6],message:"Idag börjar profilerna"}]}
 
  // First index of date is month, second is date
-var messages = {constant:[{message:"Skolfoto 28 Augusti kl 10:30-11:10 i Rörelserummet"}],date:[/*{date:[6,13], message:"Skolavslutning, \"Sommaravslutning i aulan kl: 09:00-09:30/45. Alla klasser träffas i klassrummen kl 0845 och går gemensamt till aulan kl 0900, därefter betygsutdelning i klassrummen.\", från kalender i infomentor"},*/{date:[6,12],message:"Hemkunskapen börjar 12:10 istället för 11:45"}]}
+var messages = {constant:[],date:[/*{date:[6,13], message:"Skolavslutning, \"Sommaravslutning i aulan kl: 09:00-09:30/45. Alla klasser träffas i klassrummen kl 0845 och går gemensamt till aulan kl 0900, därefter betygsutdelning i klassrummen.\", från kalender i infomentor"},*/{date:[6,12],message:"Hemkunskapen börjar 12:10 istället för 11:45"}]}
 
 var state = Object.freeze({
     "SCHOOL_OVER" : Symbol("SCHOOL_OVER"),
@@ -131,14 +131,9 @@ window.onkeydown = function(e) {
       var length = mdata[day].lessons.length;
       document.getElementById("shortcutBig1").setSafeText(toClockTime(mdata[day].lessons[length - 1].end));
       document.getElementById("shortcutSmall1").setSafeText("Idag slutar vi klockan");
-      if (day == 2) {
+      if (day == 1 || day == 2) {
         document.getElementById("shortcutBig2").setSafeText(toClockTime(mdata[day].lessons[length - 2].end));
         document.getElementById("shortcutSmall2").setSafeText("Eller om du inte behöver gå på studieverkstad, slutar du klockan");
-      } else if (day == 1) {
-        document.getElementById("shortcutBig2").setSafeText(toClockTime(mdata[day].lessons[length - 2].end));
-        document.getElementById("shortcutSmall2").setSafeText("Eller om du inte har NO-Lab, slutar du klockan");
-      } else if (day == 0) {
-        document.getElementById("shortcutSmall2").setSafeText("Fast vi brukar ofta sluta tidigare på klassrådet");
       }
     }
   }
