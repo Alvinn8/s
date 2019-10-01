@@ -9,7 +9,7 @@
                 "classroom": "G39"
             },
             {
-                "start": 575,
+                "start": 570,
                 "end": 645,
                 "subject": "NO / Teknik",
                 "classroom": "N08"
@@ -22,10 +22,17 @@
                 "material": "Idrottskläder"
             },
             {
+                "subject": "Lunch",
+                "start": 730,
+                "end": 770,
+                "classroom": "Stora Matsalen",
+                "material": "Stora Matsalen"
+            },
+            {
                 "subject": "Hemkunskap",
                 "start": 780,
                 "end": 920,
-                "classroom": "T15"
+                "classroom": "HKK1 & HKK2"
             }
         ]
     },
@@ -53,8 +60,14 @@
             {
                 "subject": "NO / Teknik",
                 "start": 675,
-                "end": 730,
+                "end": 740,
                 "classroom": "N08"
+            },
+            {
+                "subject": "Lunch",
+                "start": 745,
+                "end": 785,
+                "classroom": "Lilla Matsalen"
             },
             {
                 "subject": "Engelska",
@@ -98,6 +111,12 @@
                 "classroom": "G38"
             },
             {
+                "subject": "Lunch",
+                "start": 710,
+                "end": 750,
+                "classroom": "Lilla Matsalen"
+            },
+            {
                 "subject": "Spanska",
                 "start": 755,
                 "end": 835,
@@ -106,7 +125,7 @@
             {
                 "subject": "Studieverkstad",
                 "start": 840,
-                "end": 900,
+                "end": 895,
                 "classroom": ""
             }
         ]
@@ -133,11 +152,16 @@
                 "classroom": "Bildsalen"
             },
             {
+                "subject": "Lunch",
+                "start": 710,
+                "end": 750,
+                "classroom": "Stora Matsalen"
+            },
+            {
                 "subject": "SO",
                 "start": 750,
-                "end": 815,
-                "classroom": "G39",
-                "note": "På pappret vi fick står det att vi slutar 13:35, på infomentor står det 13:30"
+                "end": 810,
+                "classroom": "G39"
             },
             {
                 "subject": "Matematik",
@@ -159,9 +183,8 @@
             {
                 "subject": "NO / Teknik",
                 "start": 480,
-                "end": 540,
-                "classroom": "N08",
-                "note": "Jag vet inte exakt när den här lektionen slutar"
+                "end": 535,
+                "classroom": "N08"
             },
             {
                 "start": 540,
@@ -183,11 +206,16 @@
                 "classroom": "G38"
             },
             {
+                "subject": "Lunch",
+                "start": 755,
+                "end": 795,
+                "classroom": "Lilla Matsalen"
+            },
+            {
                 "subject": "Musik",
                 "start": 800,
                 "end": 850,
-                "classroom": "T20, N07",
-                "note": "Jag vet inte varför det finns två klassrum"
+                "classroom": "N06"
             }
         ]
     }
