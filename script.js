@@ -347,26 +347,24 @@ function load() {
           }
         }
 
-        // TODO: Update these
-        /*
+
         if (params.s != undefined) {
           if (params.s == "franska") {
-            changeLesson(1,0,{subject:"Franska",classroom:"G31",material:undefined});
-            changeLesson(3,2,{subject:"Franska",classroom:"G31",material:undefined});
+            changeLesson(2, 4, {subject: "Franska", classroom:"G31", material: undefined});
+            changeLesson(3, 1, {subject: "Franska", classroom:"G31", material: undefined});
             document.getElementById('linkS').value = "Franska";
           } else if (params.s == "tyska") {
-            changeLesson(1,0,{subject:"Tyska",classroom:"G19",material:undefined});
-            changeLesson(3,2,{subject:"Tyska",classroom:"G19",material:undefined});
+            changeLesson(2, 4, {subject: "Tyska", classroom:"G19", material: undefined});
+            changeLesson(3, 1, {subject: "Tyska", classroom:"G19", material: undefined});
             document.getElementById('linkS').value = "Tyska";
           } else if (params.s == "exeng") {
-            changeLesson(1,0,{subject:"Extra Engelska",classroom:"G19b",material:undefined});
-            changeLesson(3,2,{subject:"Extra Engelska",classroom:"G19b",material:undefined});
+            changeLesson(2, 4, {subject: "Extra Engelska", classroom:"G19b", material: undefined});
+            changeLesson(3, 1, {subject: "Extra Engelska", classroom:"G19b", material: undefined});
             document.getElementById('linkS').value = "Extra Engelska";
           } else {
             console.log('Invalid value for URL paramater \'s\'!');
           }
         }
-        */
         /*if (params.sl != undefined) {
           changeLesson(2,2,{subject:"Syslöjd",classroom:"G47b"});
             document.getElementById('linkSl').value = "Syslöjd";
@@ -778,7 +776,16 @@ function calcSeconds() {
   }
 }
 
-function changeGameLink() {
+function changeGameLink(e) {
+  if (currentState == state.IN_LESSON) {
+    var event = e || window.event;
+    if (event) event.preventDefault();
+    document.body.style.animation = "shake 0.75s";
+    setTimeout(function() {
+      document.body.style.animation = null;
+    }, 501);
+  }
+
   var linkIndex = parseInt(Math.random()*boredLinks.length);
   document.getElementById('killTime').href = boredLinks[linkIndex];
   boredLinks.splice(linkIndex, 1);
