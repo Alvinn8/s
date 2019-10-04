@@ -779,6 +779,7 @@ function calcSeconds() {
 function changeGameLink(event) {
   if (event != undefined && currentState == state.IN_LESSON) {
     if (event) event.preventDefault();
+    document.getElementById("killTime").href = "javascript:void(0)";
     document.body.style.animation = "shake 0.75s";
     setTimeout(function() {
       document.body.style.animation = null;
