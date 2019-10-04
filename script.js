@@ -776,20 +776,19 @@ function calcSeconds() {
   }
 }
 
-function changeGameLink(e) {
-  if (currentState == state.IN_LESSON) {
-    var event = e || window.event;
+function changeGameLink(event) {
+  if (event != undefined && currentState == state.IN_LESSON) {
     if (event) event.preventDefault();
     document.body.style.animation = "shake 0.75s";
     setTimeout(function() {
       document.body.style.animation = null;
     }, 501);
+  } else {
+    var linkIndex = parseInt(Math.random()*boredLinks.length);
+    document.getElementById('killTime').href = boredLinks[linkIndex];
+    boredLinks.splice(linkIndex, 1);
+    if (boredLinks.length < 1) boredLinks = allBoredLinks.slice(0);
   }
-
-  var linkIndex = parseInt(Math.random()*boredLinks.length);
-  document.getElementById('killTime').href = boredLinks[linkIndex];
-  boredLinks.splice(linkIndex, 1);
-  if (boredLinks.length < 1) boredLinks = allBoredLinks.slice(0);
 }
 function stateChanged() {
     if (currentState == state.IN_LESSON) {
@@ -798,6 +797,7 @@ function stateChanged() {
         document.getElementById("killTimeTitle").style.textDecoration = "line-through";
         document.getElementById("killTimeText").style.textDecoration = "line-through";
         document.getElementById("killTimeDisabled").style.display = "block";
+        document.getElementById("killTime").removeAttribute("href");
     } else {
         document.getElementById("killTimeContainer").style.opacity = 1;
         document.getElementById("killTimeContainer").style.pointerEvents = "all";
