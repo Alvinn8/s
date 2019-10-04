@@ -797,7 +797,7 @@ function stateChanged() {
         document.getElementById("killTimeTitle").style.textDecoration = "line-through";
         document.getElementById("killTimeText").style.textDecoration = "line-through";
         document.getElementById("killTimeDisabled").style.display = "block";
-        document.getElementById("killTime").removeAttribute("href");
+        document.getElementById("killTime").href = "javascript:void(0)";
     } else {
         document.getElementById("killTimeContainer").style.opacity = 1;
         document.getElementById("killTimeContainer").style.pointerEvents = "all";
