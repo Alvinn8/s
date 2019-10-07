@@ -26,7 +26,7 @@
                 "start": 730,
                 "end": 770,
                 "classroom": "Stora Matsalen",
-                "material": "Stora Matsalen"
+                "isDisabled": true
             },
             {
                 "subject": "Hemkunskap",
@@ -67,7 +67,8 @@
                 "subject": "Lunch",
                 "start": 745,
                 "end": 785,
-                "classroom": "Lilla Matsalen"
+                "classroom": "Lilla Matsalen",
+                "isDisabled": true
             },
             {
                 "subject": "Engelska",
@@ -114,7 +115,8 @@
                 "subject": "Lunch",
                 "start": 710,
                 "end": 750,
-                "classroom": "Lilla Matsalen"
+                "classroom": "Lilla Matsalen",
+                "isDisabled": true
             },
             {
                 "subject": "Spanska",
@@ -155,7 +157,8 @@
                 "subject": "Lunch",
                 "start": 710,
                 "end": 750,
-                "classroom": "Stora Matsalen"
+                "classroom": "Stora Matsalen",
+                "isDisabled": true
             },
             {
                 "subject": "SO",
@@ -178,7 +181,7 @@
         ]
     },
     {
-        "lunch": 3,
+        "lunch": 4,
         "lessons": [
             {
                 "subject": "NO / Teknik",
@@ -209,7 +212,8 @@
                 "subject": "Lunch",
                 "start": 755,
                 "end": 795,
-                "classroom": "Lilla Matsalen"
+                "classroom": "Lilla Matsalen",
+                "isDisabled": true
             },
             {
                 "subject": "Musik",
