@@ -248,15 +248,15 @@ function getLunch(day) {
   if (!mdata[day]) return null;
   if (!mdata[day].lunch) return null;
 
-  var lessons_before = mdata[day].lunch;
+  var lesson_index = mdata[day].lunch;
+  var lesson = mdata[day].lessons[lesson_index];
 
-  if (!mdata[day].lessons[lessons_before-1]) return null;
-  if (!mdata[day].lessons[lessons_before]) return null;
+  if (!lesson) return null;
 
   return {
-    start  : mdata[day].lessons[lessons_before-1].end,
-    end    : mdata[day].lessons[lessons_before].start,
-    length : ((mdata[day].lessons[lessons_before].start)-(mdata[day].lessons[lessons_before-1].end))
+    start  : lesson.start,
+    end    : lesson.end,
+    length : getLessonLength(lesson)
   }
  }
 function changeDay(increase) {
