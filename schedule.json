@@ -6,13 +6,15 @@
                 "start": 510,
                 "end": 565,
                 "subject": "Matematik",
-                "classroom": "G39"
+                "classroom": "G39",
+                "material": "Matematikmappen"
             },
             {
                 "start": 570,
                 "end": 645,
                 "subject": "NO / Teknik",
-                "classroom": "N08"
+                "classroom": "N08",
+                "material": "NO Skrivbok och Textbok"
             },
             {
                 "subject": "Idrott",
@@ -32,7 +34,8 @@
                 "subject": "Hemkunskap",
                 "start": 780,
                 "end": 920,
-                "classroom": "HKK1 & HKK2"
+                "classroom": "HKK1 & HKK2",
+                "material": "Hemkunskapsboken"
             }
         ]
     },
@@ -43,25 +46,29 @@
                 "start": 480,
                 "end": 535,
                 "subject": "Idrott Studieverkstad",
-                "classroom": "Rörelserummet"
+                "classroom": "Rörelserummet",
+                "material": "Idrottskläder (Om du ska på Idrott Studieverkstaden)"
             },
             {
                 "start": 540,
                 "end": 605,
                 "subject": "SO",
-                "classroom": "G39"
+                "classroom": "G39",
+                "material": "SO Skrivbok"
             },
             {
                 "subject": "Matematik",
                 "start": 620,
                 "end": 665,
-                "classroom": "G36"
+                "classroom": "G36",
+                "material": "Matematikmappen"
             },
             {
                 "subject": "NO / Teknik",
                 "start": 675,
                 "end": 740,
-                "classroom": "N08"
+                "classroom": "N08",
+                "material": "NO Skrivbok och Textbok"
             },
             {
                 "subject": "Lunch",
@@ -74,13 +81,15 @@
                 "subject": "Engelska",
                 "start": 785,
                 "end": 840,
-                "classroom": "G31"
+                "classroom": "G31",
+                "material": "Engelskaböcker"
             },
             {
                 "subject": "Matematik Problemlösning",
                 "start": 845,
                 "end": 895,
-                "classroom": "G39"
+                "classroom": "G39",
+                "material": "Matematikmappen"
             },
             {
                 "subject": "Studieverkstad",
@@ -97,13 +106,15 @@
                 "start": 510,
                 "end": 565,
                 "subject": "SO",
-                "classroom": "G39"
+                "classroom": "G39",
+                "material": "SO Skrivbok"
             },
             {
                 "start": 580,
                 "end": 640,
                 "subject": "Musik / NO Labb",
-                "classroom": "N07 / N08"
+                "classroom": "N07 / N08",
+                "material": "NO Skrivbok och Textbok (Om du har NO-labb)"
             },
             {
                 "subject": "Svenska",
@@ -122,7 +133,8 @@
                 "subject": "Spanska",
                 "start": 755,
                 "end": 835,
-                "classroom": "G15"
+                "classroom": "G15",
+                "material": "Spanskamappen"
             },
             {
                 "subject": "Studieverkstad",
@@ -145,7 +157,8 @@
                 "subject": "Spanska",
                 "start": 540,
                 "end": 620,
-                "classroom": "G15"
+                "classroom": "G15",
+                "material": "Spanskamappen"
             },
             {
                 "subject": "Bild",
@@ -164,13 +177,15 @@
                 "subject": "SO",
                 "start": 750,
                 "end": 810,
-                "classroom": "G39"
+                "classroom": "G39",
+                "material": "SO Skrivbok"
             },
             {
                 "subject": "Matematik",
                 "start": 820,
                 "end": 875,
-                "classroom": "G39"
+                "classroom": "G39",
+                "material": "Matematikmappen"
             },
             {
                 "subject": "Svenska",
@@ -187,7 +202,8 @@
                 "subject": "NO / Teknik",
                 "start": 480,
                 "end": 535,
-                "classroom": "N08"
+                "classroom": "N08",
+                "material": "NO Skrivbok och Textbok"
             },
             {
                 "start": 540,
@@ -206,7 +222,8 @@
                 "subject": "Engelska",
                 "start": 690,
                 "end": 755,
-                "classroom": "G38"
+                "classroom": "G38",
+                "material": "Engelskaböcker"
             },
             {
                 "subject": "Lunch",

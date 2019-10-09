@@ -169,7 +169,7 @@ function calcMinutes() {
       document.getElementById('nextOrCurLes').setSafeText("Nuvarande lektion");
       document.getElementById('nextLesTime').setSafeText("Slutar om: ").addSafeElement("b", toHourAndMinute(less.end-nowTime()-1,true));
       document.getElementById('nextLesSubject').setSafeText("Ämne: ").addSafeElement("b", less.subject);
-      document.getElementById('nextLesClassroom').setSafeText("Sal: ").addSafeElement("b", less.classroom);
+      document.getElementById('nextLesClassroom').setSafeText("Klassrum: ").addSafeElement("b", less.classroom);
       document.getElementById('nextLesStarted').setSafeText("Började: ").addSafeElement("b", toClockTime(less.start));
       document.getElementById('nextLesEnds').setSafeText("Slutar: ").addSafeElement("b", toClockTime(less.end));
       document.getElementById('nextLesLength').setSafeText("Längd: ").addSafeElement("b", toHourAndMinute(getLessonLength(less)));
@@ -196,7 +196,7 @@ function calcMinutes() {
       document.getElementById('nextOrCurLes').setSafeText("Nästa lektion");
       document.getElementById('nextLesTime').setSafeText("Börjar om: ").addSafeElement("b", toHourAndMinute((less.start-nowTime()-1),true));
       document.getElementById('nextLesSubject').setSafeText("Ämne: ").addSafeElement("b", less.subject);
-      document.getElementById('nextLesClassroom').setSafeText("Sal: ").addSafeElement("b", less.classroom);
+      document.getElementById('nextLesClassroom').setSafeText("Klassrum: ").addSafeElement("b", less.classroom);
       document.getElementById('nextLesStarted').setSafeText("Börjar: ").addSafeElement("b", toClockTime(less.start));
       document.getElementById('nextLesEnds').setSafeText("Slutar: ").addSafeElement("b", toClockTime(less.end));
       document.getElementById('nextLesLength').setSafeText("Längd: ").addSafeElement("b", toHourAndMinute(getLessonLength(less)));
@@ -354,8 +354,8 @@ function load() {
             changeLesson(3, 1, {subject: "Franska", classroom:"G31", material: undefined});
             document.getElementById('linkS').value = "Franska";
           } else if (params.s == "tyska") {
-            changeLesson(2, 4, {subject: "Tyska", classroom:"G19", material: undefined});
-            changeLesson(3, 1, {subject: "Tyska", classroom:"G19", material: undefined});
+            changeLesson(2, 4, {subject: "Tyska", classroom:"G19", material: "Tyskaböcker"});
+            changeLesson(3, 1, {subject: "Tyska", classroom:"G19", material: "Tyskaböcker"});
             document.getElementById('linkS').value = "Tyska";
           } else if (params.s == "exeng") {
             changeLesson(2, 4, {subject: "Extra Engelska", classroom:"G19b", material: undefined});
@@ -421,7 +421,7 @@ function load() {
       console.error(e);
   }
   try {
-      makeschedule();
+      makeSchedule();
   } catch(e) {
       displayError("Något gick fel när schemat skulle laddas, "+ e);
       console.error(e);
@@ -500,7 +500,7 @@ function setMats() {
     }
   }
 }
-function makeschedule() {
+function makeSchedule() {
   var OFFSET = 430; // Was 440
   var totalLessons = 0;
   var len = 515;
@@ -605,7 +605,7 @@ function showLessonInfo(day, les, overridePath) {
   var less = !overridePath ? mdata[day].lessons[les] : overrides[overridePath[0]][overridePath[1]];
   document.getElementById('lessonInfo').style.display = "block";
   document.getElementById('lessonInfoSubject').setSafeText("Ämne: ").addSafeElement("b", less.subject);
-  document.getElementById('lessonInfoClassroom').setSafeText("Sal: ").addSafeElement("b", less.classroom);
+  document.getElementById('lessonInfoClassroom').setSafeText("Klassrum: ").addSafeElement("b", less.classroom);
   document.getElementById('lessonInfoLength').setSafeText("Längd: ").addSafeElement("b", toHourAndMinute(getLessonLength(less)));
   document.getElementById('lessonInfoStarts').setSafeText("Börjar: ").addSafeElement("b", toClockTime(less.start));
   document.getElementById('lessonInfoEnds').setSafeText("Slutar: ").addSafeElement("b", toClockTime(less.end));
@@ -635,6 +635,8 @@ function showLessonInfo(day, les, overridePath) {
 function newDay() {
   if(day != new Date().getDay()-1) {
     day = new Date().getDay()-1;
+    lunchDay = day;
+    changeDay();
   }
 }
 function getParams() {

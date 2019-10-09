@@ -1,7 +1,6 @@
 <html>
     <head>
         <title>s Editor</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             body {
@@ -284,7 +283,7 @@
                 editingLessonPath = [day, less];
 
                 content += "Ämne: <input oninput=\"updateLesson(this)\" name=\"subject\" value=\""+ lesson.subject +"\"><br>";
-                content += "Sal:  <input oninput=\"updateLesson(this)\" name=\"classroom\" value=\""+ lesson.classroom +"\"><br>";
+                content += "Klassrum:  <input oninput=\"updateLesson(this)\" name=\"classroom\" value=\""+ lesson.classroom +"\"><br>";
                 content += "Börjar:  <input oninput=\"updateLesson(this)\" type=\"time\" name=\"start\" value=\""+ toClockTime(lesson.start,true) +"\"><br>";
                 content += "Slutar:  <input oninput=\"updateLesson(this)\" type=\"time\" name=\"end\" value=\""+ toClockTime(lesson.end,true) +"\"><br>";
                 content += "Längd: <b id=\"lessonInfo--length\">"+ format(lesson.end - lesson.start) +"</b><br>";
@@ -441,6 +440,10 @@
                     case "NO-LAB": return "NO-Lab";
                     case "HKK": return "Hemkunskap";
                     case "Studieverkstad": return "Studieverkstad";
+                    case "NO/TK": return "NO / Teknik";
+                    case "MA-PL": return "Matematik Problemlösning";
+                    case "NO/LAB": return "Musik / NO Labb";
+                    case "MU": return "Musik";
                     default:
                         document.getElementById("convertConsole").appendChild(document.createTextNode("Unknown subject "+ subject +"\n"));
                         return subject;
@@ -451,7 +454,11 @@
                     case "Bildsal": return "Bildsalen";
                     case "HKK1": return "Hemkunskapsalen";
                     case "HallA": return "Hall A";
-                    default: return classroom;
+                    case "Lilla Ma": return "Lilla Matsalen";
+                    case "Stora Ma": return "Stora Matsalen";
+                    default:
+                        if (/[GN]\d{2}/.exec(classroom)) document.getElementById("convertConsole").appendChild(document.createTextNode("Unknown classroom "+ classroom +"\n"));
+                        return classroom;
                 }
             }
             function fromClockTime(time) {
