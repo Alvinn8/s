@@ -1,4 +1,18 @@
 {
-  "lessons" : [],
-  "days"    : []
+  "lessons" : [
+    {
+      "date": {
+        "month": 10,
+        "date": 16
+      },
+      "lesson": [2, 4],
+      "overrides": {
+        "start": 739,
+        "subject": "Framtidskollen",
+        "classroom": "Tåget",
+        "info": "Föreläsningar 13:00 - 15:40"
+      }
+    }
+  ],
+  "days": []
 }
