@@ -50,6 +50,12 @@
                 "material": "Idrottskläder (Om du ska på Idrott Studieverkstaden)"
             },
             {
+                "start": 505,
+                "end": 535,
+                "subject": "Klassråd",
+                "classroom": "G18"
+            },
+            {
                 "start": 540,
                 "end": 605,
                 "subject": "SO",
@@ -147,12 +153,6 @@
     {
         "lunch": 3,
         "lessons": [
-            {
-                "start": 505,
-                "end": 535,
-                "subject": "Klassråd",
-                "classroom": "G18"
-            },
             {
                 "subject": "Spanska",
                 "start": 540,
