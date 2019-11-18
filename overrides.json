@@ -1,4 +1,19 @@
 {
-  "lessons" : [],
-  "days"    : []
+  "lessons": [
+    {
+      "date": {
+        "date": 18,
+        "month": 11
+      },
+      "lesson": [1, 0],
+      "overrides": {
+        "subject": "Svenska Nationella Prov",
+        "classroom": "G39",
+        "start": 510,
+        "end": 540,
+        "material": null
+      }
+    }
+  ],
+  "days": []
 }
