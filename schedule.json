@@ -50,12 +50,6 @@
                 "material": "Idrottskläder (Om du ska på Idrott Studieverkstaden)"
             },
             {
-                "start": 505,
-                "end": 535,
-                "subject": "Klassråd",
-                "classroom": "G18"
-            },
-            {
                 "start": 540,
                 "end": 605,
                 "subject": "SO",
@@ -102,7 +96,8 @@
                 "start": 900,
                 "end": 960,
                 "classroom": ""
-            }
+            },
+            null
         ]
     },
     {
@@ -183,13 +178,19 @@
             {
                 "subject": "Matematik",
                 "start": 820,
-                "end": 875,
+                "end": 870,
                 "classroom": "G39",
                 "material": "Matematikmappen"
             },
             {
+                "start": 870,
+                "end": 890,
+                "subject": "Klassråd",
+                "classroom": "G18"
+            },
+            {
                 "subject": "Svenska",
-                "start": 885,
+                "start": 890,
                 "end": 945,
                 "classroom": "G38"
             }
