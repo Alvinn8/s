@@ -50,22 +50,22 @@
                 "material": "Idrottskläder (Om du ska på Idrott Studieverkstaden)"
             },
             {
-                "start": 540,
-                "end": 605,
+                "start": 545,
+                "end": 610,
                 "subject": "SO",
                 "classroom": "G39",
                 "material": "SO Skrivbok"
             },
             {
                 "subject": "Matematik",
-                "start": 620,
-                "end": 665,
+                "start": 625,
+                "end": 670,
                 "classroom": "G36",
                 "material": "Matematikmappen"
             },
             {
                 "subject": "NO / Teknik",
-                "start": 675,
+                "start": 680,
                 "end": 740,
                 "classroom": "N08",
                 "material": "NO Skrivbok och Textbok"
@@ -88,7 +88,7 @@
                 "subject": "Matematik Problemlösning",
                 "start": 845,
                 "end": 895,
-                "classroom": "G39",
+                "classroom": "G39 eller G31",
                 "material": "Matematikmappen"
             },
             {
@@ -185,13 +185,13 @@
                 "start": 870,
                 "end": 890,
                 "subject": "Klassråd",
-                "classroom": "G18"
+                "classroom": "G39"
             },
             {
                 "subject": "Svenska",
                 "start": 890,
                 "end": 945,
-                "classroom": "G38"
+                "classroom": "G39"
             }
         ]
     },
