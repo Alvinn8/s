@@ -1,4 +1,19 @@
 {
-  "lessons" : [],
-  "days"    : []
+  "lessons": [
+    {
+      "lesson": [4, 0],
+      "overrides": {
+        "start": 525,
+        "end": 555,
+        "subject": "Lucia",
+        "classroom": "Aulan",
+        "material": null
+      },
+      "date": {
+        "date": 13,
+        "month": 12
+      }
+    }
+  ],
+  "days": []
 }
