@@ -1,19 +1,38 @@
 {
-  "lessons": [
+  "lessons": [],
+  "days": [
     {
-      "lesson": [4, 0],
-      "overrides": {
-        "start": 525,
-        "end": 555,
-        "subject": "Lucia",
-        "classroom": "Aulan",
-        "material": null
-      },
+      "start": 570,
+      "end": 585,
+      "subject": "Samling",
+      "classroom": "G38",
+      "day": 4,
       "date": {
-        "date": 13,
-        "month": 12
+        "month": 12,
+        "date": 20
+      }
+    },
+    {
+      "start": 585,
+      "end": 615,
+      "subject": "Julavslutning",
+      "classroom": "Aulan",
+      "day": 4,
+      "date": {
+        "month": 12,
+        "date": 20
+      }
+    },
+    {
+      "start": 615,
+      "end": 660,
+      "subject": "Fika och Betygsutdelning",
+      "classroom": "G38",
+      "day": 4,
+      "date": {
+        "month": 12,
+        "date": 20
       }
     }
-  ],
-  "days": []
+  ]
 }
