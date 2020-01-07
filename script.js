@@ -144,7 +144,7 @@ function calcMinutes() {
 
   updatedAt = nowTime();
 
-  if (new Date().getTime() > new Date("Jun 13 2019 09:00:00").getTime() && new Date().getTime() < new Date("Aug 19 2019").getTime()) celebrateGo();
+  if (new Date().getTime() > new Date("Jun 13 2019 09:00:00").getTime() && new Date().getTime() < new Date("Aug 19 2019").getTime() && typeof celebrateGo == "function") celebrateGo();
 
   var lessons = mdata[0].lessons;
 
@@ -173,7 +173,16 @@ function calcMinutes() {
       document.getElementById('nextLesStarted').setSafeText("Började: ").addSafeElement("b", toClockTime(less.start));
       document.getElementById('nextLesEnds').setSafeText("Slutar: ").addSafeElement("b", toClockTime(less.end));
       document.getElementById('nextLesLength').setSafeText("Längd: ").addSafeElement("b", toHourAndMinute(getLessonLength(less)));
-      document.getElementById('nextLesExtra').setSafeText("");
+      if (less.optional) {
+        document.getElementById("nextLesSkip").style.display = "inline-block";
+      } else {
+        document.getElementById("nextLesSkip").style.display = "none";
+      }
+      if (less.everyOtherWeek) {
+        document.getElementById('nextLesExtra').setSafeText("Om du inte har NO-labb denna vecka tryck på knappen");
+      } else {
+        document.getElementById('nextLesExtra').setSafeText("");
+      }
       
       if (!calcSecondsIntervalId) {
         console.log("Starting calcSeconds interval");
@@ -201,6 +210,11 @@ function calcMinutes() {
       document.getElementById('nextLesEnds').setSafeText("Slutar: ").addSafeElement("b", toClockTime(less.end));
       document.getElementById('nextLesLength').setSafeText("Längd: ").addSafeElement("b", toHourAndMinute(getLessonLength(less)));
       document.getElementById('nextLesExtra').setSafeText("");
+      if (less.optional) {
+        document.getElementById("nextLesSkip").style.display = "inline-block";
+      } else {
+        document.getElementById("nextLesSkip").style.display = "none";
+      }
       
       if (!calcSecondsIntervalId) {
         console.log("Starting calcSeconds interval");
@@ -289,6 +303,9 @@ function load() {
   }
   // Load overrides
   try {
+    if (!overrides.lessons.length && !overrides.days.length) {
+      document.getElementById("hideOverridesContainer").style.display = "none";
+    }
     for (var lessonOverride of overrides.lessons) {
       console.log("Loading override "+ lessonOverride.lesson.join(" "), lessonOverride);
       // TODO: add date checking
@@ -365,10 +382,10 @@ function load() {
             console.log('Invalid value for URL paramater \'s\'!');
           }
         }
-        /*if (params.sl != undefined) {
-          changeLesson(2,2,{subject:"Syslöjd",classroom:"G47b"});
+        if (params.sl != undefined) {
+          changeLesson(0,4,{subject:"Syslöjd",classroom:"Syslöjdsalen"});
             document.getElementById('linkSl').value = "Syslöjd";
-        }*/
+        }
         /*
         if (params.profil != undefined) {
           changeLesson(3,4, {subject:decodeURIComponent(params.profil)})
@@ -389,20 +406,17 @@ function load() {
         }
         */
 
-        // TODO: Update these
-        /*
         if (params.mod != undefined) {
-          mdata[4].lessons[4] = {subject:decodeURIComponent(params.mod),classroom:"<span style=\"color:red\">error</span>",start: toTime(14,25), end:toTime(15, 05)}
+          mdata[0].lessons[5] = {subject:decodeURIComponent(params.mod),classroom:"error",start: toTime(15,25), end:toTime(16, 05)}
           document.getElementById('linkMod').value = "Modersmål";
           linkChange();
           document.getElementById('linkModName').value = decodeURIComponent(params.mod);
-          document.getElementById('linkModClassroom').value = decodeURIComponent(params.modSal);
+          // document.getElementById('linkModClassroom').value = decodeURIComponent(params.modSal);
         }
         if (params.modSal != undefined) {
-          changeLesson(4,4, {classroom:decodeURIComponent(params.modSal)})
-          document.getElementById('linkModClassroom').value = decodeURIComponent(params.ModSal);
+          changeLesson(0, 5, {classroom:decodeURIComponent(params.modSal)});
+          document.getElementById('linkModClassroom').value = decodeURIComponent(params.modSal);
         }
-        */
     
         if (params.gt != undefined) {
           document.getElementById("gt").style.display = "block";
@@ -414,6 +428,32 @@ function load() {
           document.head.appendChild(style);
           document.getElementById('linkColor').value = "#" + params.color;
 
+          var r = parseInt(params.color.substring(0, 2), 16);
+          var g = parseInt(params.color.substring(2, 4), 16);
+          var b = parseInt(params.color.substring(4, 6), 16);
+
+          r = parseInt(r / 2);
+          g = parseInt(g / 2);
+          b = parseInt(b / 2);
+
+          function ensureTwoChars(string) {
+            if (string.length == 1) return "0"+ string;
+            if (string.length == 0) return "00";
+            if (string.length == 2) return string;
+            else throw new Error("Color not two characters");
+          }
+
+          var bordercolor = ensureTwoChars(r.toString(16)) + ensureTwoChars(g.toString(16)) + ensureTwoChars(b.toString(16));
+          var borderstyle = document.createElement("style");
+          borderstyle.innerHTML = ".schedule, #lessonInfo, #shortcut { border-color: #"+ bordercolor +" !important }"; // TODO: Maybe find a way to do this without !important
+          document.head.appendChild(borderstyle);
+        }
+
+        if (params.textColor) {
+          var style = document.createElement("style");
+          style.innerHTML = ".schedule, #lessonInfo, #shortcut { color: #"+ params.textColor +" !important }"; // TODO: Maybe find a way to do this without !important
+          document.head.appendChild(style);
+          document.getElementById('linkTextColor').value = "#" + params.textColor;
         }
       }
   } catch(e) {
@@ -449,6 +489,31 @@ function load() {
         document.getElementById('recalc').style.marginBottom = "16px";
     }
   }*/
+
+  document.getElementById("nextLesSkip").addEventListener("click", function() {
+    var lessons = mdata[day].lessons;
+
+    if ((day > 4) || (day < 0)) {
+      // Weekend
+      displayError("Error: Kan inte skippa lektioner på helgen");
+      return;
+    }
+    for (var les in lessons) {
+      var less = lessons[les];
+      if (less.isDisabled) continue;
+      if ((less.start <= nowTime()) && (less.end > nowTime())) {
+        // In lesson
+        mdata[day].lessons[les].isDisabled = true;
+        break;
+      }
+      if (less.start > nowTime()) {
+        // break
+        mdata[day].lessons[les].isDisabled = true;
+        break;
+      }
+    }
+    calcMinutes();
+  });
   
 }
 function toClockTime(val) {
@@ -506,10 +571,16 @@ function makeSchedule() {
   var len = 515;
   function addElement(less, day, index, overridePath) {
     var toAdd = document.createElement('a');
-    if (less.border == true) toAdd.style.top = less.start-OFFSET-1 +"px";
-    else toAdd.style.top = less.start-OFFSET +"px";
+    // If the lesson before this one ends at the exact same time as this lesson starts,
+    // move it one pixel up to avoid a double border
+    if (mdata[day].lessons[index - 1] && mdata[day].lessons[index - 1].end == less.start) {
+      toAdd.style.top = less.start-OFFSET-1 +"px";
+      toAdd.style.height = getLessonLength(less) + 1 +"px";
+    } else {
+      toAdd.style.top = less.start-OFFSET +"px";
+      toAdd.style.height = getLessonLength(less) +"px";
+    }
     toAdd.style.width = "100px";
-    toAdd.style.height = getLessonLength(less) +"px";
     toAdd.style.left = 102*day + 2 + "px";
     toAdd.title = less.subject;
     toAdd.className = "schedule";
@@ -746,13 +817,24 @@ function linkChange(reload) {
       link += "&color="+ document.getElementById('linkColor').value.substr(1);
     } else {
       link += "?color="+ document.getElementById('linkColor').value.substr(1);
+      firstParamUsed = true;
+    }
+  }
+  if (document.getElementById('linkTextColor').value != "#000000") {
+    if (firstParamUsed) {
+      link += "&textColor="+ document.getElementById('linkTextColor').value.substr(1);
+    } else {
+      link += "?textColor="+ document.getElementById('linkTextColor').value.substr(1);
+      firstParamUsed = true;
     }
   }
 
   document.getElementById('linkResult').value = link;
   console.log("New url", link);
-  if (!reload && document.getElementById('linkColor').value == "#00ff00" && document.URL != link) history.replaceState(null, null, link.substr("https://alvinn8.github.io/s/".length));
-  if (reload) location.replace(link.substr("https://alvinn8.github.io/s/".length));
+  var redirectUrl = link.substr("https://alvinn8.github.io/s/".length);
+  if (redirectUrl == "") redirectUrl = "/";
+  if (!reload && document.getElementById('linkColor').value == "#00ff00" && document.getElementById('linkTextColor').value == "#000000" && document.URL != link) history.replaceState(null, null, redirectUrl);
+  if (reload) location.replace(redirectUrl);
 }
 
 function calcSeconds() {

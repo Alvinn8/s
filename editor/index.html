@@ -2,6 +2,7 @@
     <head>
         <title>s Editor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
         <style>
             body {
                 font-family: Roboto, Arial;
@@ -25,7 +26,7 @@
             #aContainer {
                 margin-bottom: 3em;
             }
-            .schema {
+            .schedule {
                 position: absolute;
                 background-color: lime;
                 border-top: 1px solid green;
@@ -41,16 +42,16 @@
                 box-sizing: border-box;
                 width: 100px;
             }
-            #schemaContainer {
+            #scheduleContainer {
                 position: relative;
             }
-            .schemaVerticalLine {
+            .scheduleVerticalLine {
                 position: absolute;
                 background-color: black;
                 width: 2px;
                 z-index: 1;
             }
-            .schemaHorizontalLine {
+            .scheduleHorizontalLine {
                 position: absolute;
                 background-color: black;
                 height: 2px;
@@ -202,17 +203,17 @@
             function generateOutput() {
 
                 const OFFSET = 440;
-                var schemaContainer = document.getElementById('schemaContainer');
+                var scheduleContainer = document.getElementById('scheduleContainer');
                 var len = 300;
 
                 var white_space = 4;
                 if (document.getElementById('minified').checked) white_space = 0;
 
-                var all = document.getElementById('schemaContainer').children;
+                var all = document.getElementById('scheduleContainer').children;
 
                 for (var i  = all.length-1; i > 0; i--) {
 
-                    if ((all[i].className == 'schema') || (all[i].className == 'schemaVerticalLine')) {
+                    if ((all[i].className == 'schedule') || (all[i].className == 'scheduleVerticalLine')) {
 
                         all[i].remove();
 
@@ -237,7 +238,7 @@
 
                         var toAdd = document.createElement('a');
 
-                        toAdd.className = 'schema';
+                        toAdd.className = 'schedule';
                         toAdd.style.top = lesson.start - OFFSET + "px";
                         toAdd.style.left = day * 102 + 1 + "px";
                         toAdd.style.height = lesson.end - lesson.start + "px";
@@ -245,7 +246,7 @@
                         toAdd.innerHTML = lesson.subject + '<br>' + lesson.classroom;
                         toAdd.href = "javascript:showLessonInfo("+ day +", "+ less +")"
 
-                        schemaContainer.appendChild(toAdd);
+                        scheduleContainer.appendChild(toAdd);
 
                         if (lesson.end - OFFSET > len) len = lesson.end - OFFSET;
 
@@ -257,17 +258,17 @@
 
                     var toAdd = document.createElement('div');
 
-                    toAdd.className = "schemaVerticalLine";
+                    toAdd.className = "scheduleVerticalLine";
                     toAdd.style.height = len +"px";
                     if (i != mdata.length) toAdd.style.left = 102 * i - 1 + "px";
                     else toAdd.style.left = 102 * i - 3 + "px";
 
-                    document.getElementById('schemaContainer').appendChild(toAdd);
+                    document.getElementById('scheduleContainer').appendChild(toAdd);
 
                 }
 
-                document.getElementById("schemaBottom").style.top = len + "px";
-                document.getElementById("schemaContainer").style.height = len + "px";
+                document.getElementById("scheduleBottom").style.top = len + "px";
+                document.getElementById("scheduleContainer").style.height = len + "px";
 
                 document.getElementById('output').value = JSON.stringify(mdata, null, white_space);
 
@@ -374,7 +375,7 @@
 
                 }
             }
-            /*
+            /**
             * @param {boolean} forceTwoDigits - If true the hours will always be 2 digits. Ex. 9:32 --> 09:32
             */
             function toClockTime(minutes,forceTwoDigits) {
@@ -410,6 +411,7 @@
                 }
                 var out = [{lessons:[]},{lessons:[]},{lessons:[]},{lessons:[]},{lessons:[]}];
                 for (var lesson of json) {
+                    if (lesson.title == "Utlämning mobiltelefoner") continue;
                     var day = new Date(lesson.start).getDay();
                     var less = {};
 
@@ -444,6 +446,8 @@
                     case "MA-PL": return "Matematik Problemlösning";
                     case "NO/LAB": return "Musik / NO Labb";
                     case "MU": return "Musik";
+                    case "SLTM": return "Träsjöjd";
+                    case "Lunch": return "Lunch";
                     default:
                         document.getElementById("convertConsole").appendChild(document.createTextNode("Unknown subject "+ subject +"\n"));
                         return subject;
@@ -456,8 +460,10 @@
                     case "HallA": return "Hall A";
                     case "Lilla Ma": return "Lilla Matsalen";
                     case "Stora Ma": return "Stora Matsalen";
+                    case "Trä G01": return "Träsjöjdsalen (G01)";
+                    case "Rörelser": return "Rörelserummet";
                     default:
-                        if (/[GN]\d{2}/.exec(classroom)) document.getElementById("convertConsole").appendChild(document.createTextNode("Unknown classroom "+ classroom +"\n"));
+                        if (!/[GN]\d{2}/.exec(classroom)) document.getElementById("convertConsole").appendChild(document.createTextNode("Unknown classroom "+ classroom +"\n"));
                         return classroom;
                 }
             }
@@ -506,13 +512,13 @@
 
     <body onload="load();">
         <textarea id="loadJson"></textarea>
-        <button onclick="loadJson();">Load schema from JSON</button>
+        <button onclick="loadJson();">Load schedule from JSON</button>
         <div id="aContainer">
             <button id="addLesson" onclick="addLesson();generateOutput();">Add lesson</button>
-            <div id="schemaContainer" style="width:520px;height:500px;">
-                <div class="schemaHorizontalLine"></div>
-                <div class="schemaHorizontalLine" style="top: 38px;"></div>
-                <div class="schemaHorizontalLine" style="top: 300px; width: 510px; left: -1px;" id="schemaBottom"></div>
+            <div id="scheduleContainer" style="width:520px;height:500px;">
+                <div class="scheduleHorizontalLine"></div>
+                <div class="scheduleHorizontalLine" style="top: 38px;"></div>
+                <div class="scheduleHorizontalLine" style="top: 300px; width: 510px; left: -1px;" id="scheduleBottom"></div>
 
                 <p style="position: absolute;left: 20px;top: -5px;">Måndag</p>
                 <p style="position: absolute;left: 130px;top: -5px;">Tisdag</p>

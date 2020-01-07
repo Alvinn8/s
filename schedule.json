@@ -31,11 +31,10 @@
                 "isDisabled": true
             },
             {
-                "subject": "Hemkunskap",
+                "subject": "Träsjöjd",
                 "start": 780,
                 "end": 920,
-                "classroom": "HKK1 & HKK2",
-                "material": "Hemkunskapsboken"
+                "classroom": "Träsjöjdsalen (G01)"
             }
         ]
     },
@@ -47,7 +46,8 @@
                 "end": 535,
                 "subject": "Idrott Studieverkstad",
                 "classroom": "Rörelserummet",
-                "material": "Idrottskläder (Om du ska på Idrott Studieverkstaden)"
+                "material": "Idrottskläder (Om du ska på Idrott Studieverkstaden)",
+                "optional": true
             },
             {
                 "start": 545,
@@ -95,7 +95,8 @@
                 "subject": "Studieverkstad",
                 "start": 900,
                 "end": 960,
-                "classroom": ""
+                "classroom": "",
+                "optional": true
             }
         ]
     },
@@ -114,7 +115,8 @@
                 "end": 640,
                 "subject": "Musik / NO Labb",
                 "classroom": "N07 / N08",
-                "material": "NO Skrivbok och Textbok (Om du har NO-labb)"
+                "material": "NO Skrivbok och Textbok (Om du har NO-labb)",
+                "optional": true
             },
             {
                 "subject": "Svenska",
@@ -141,7 +143,8 @@
                 "subject": "Studieverkstad",
                 "start": 840,
                 "end": 895,
-                "classroom": ""
+                "classroom": "",
+                "optional": true
             }
         ]
     },
