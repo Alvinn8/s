@@ -832,7 +832,7 @@ function linkChange(reload) {
   document.getElementById('linkResult').value = link;
   console.log("New url", link);
   var redirectUrl = link.substr("https://alvinn8.github.io/s/".length);
-  if (redirectUrl == "") redirectUrl = "/";
+  if (redirectUrl == "") redirectUrl = location.origin + location.pathname;
   if (!reload && document.getElementById('linkColor').value == "#00ff00" && document.getElementById('linkTextColor').value == "#000000" && document.URL != link) history.replaceState(null, null, redirectUrl);
   if (reload) location.replace(redirectUrl);
 }
