@@ -368,15 +368,15 @@ function load() {
         if (params.s != undefined) {
           if (params.s == "franska") {
             changeLesson(2, 4, {subject: "Franska", classroom:"G31", material: undefined});
-            changeLesson(3, 1, {subject: "Franska", classroom:"G31", material: undefined});
+            changeLesson(3, 0, {subject: "Franska", classroom:"G31", material: undefined});
             document.getElementById('linkS').value = "Franska";
           } else if (params.s == "tyska") {
             changeLesson(2, 4, {subject: "Tyska", classroom:"G19", material: "Tyskaböcker"});
-            changeLesson(3, 1, {subject: "Tyska", classroom:"G19", material: "Tyskaböcker"});
+            changeLesson(3, 0, {subject: "Tyska", classroom:"G19", material: "Tyskaböcker"});
             document.getElementById('linkS').value = "Tyska";
           } else if (params.s == "exeng") {
             changeLesson(2, 4, {subject: "Extra Engelska", classroom:"G19b", material: undefined});
-            changeLesson(3, 1, {subject: "Extra Engelska", classroom:"G19b", material: undefined});
+            changeLesson(3, 0, {subject: "Extra Engelska", classroom:"G19b", material: undefined});
             document.getElementById('linkS').value = "Extra Engelska";
           } else {
             console.log('Invalid value for URL paramater \'s\'!');
@@ -513,6 +513,7 @@ function load() {
       }
     }
     calcMinutes();
+    setMats();
   });
   
 }
@@ -553,6 +554,8 @@ function setMats() {
   for (var les in mdata[lunchDay].lessons) {
     var less = mdata[lunchDay].lessons[les];
     if (less.material == undefined) {
+      continue;
+    } else if (less.isDisabled) {
       continue;
     } else {
       var matToAdd = document.createElement('span');
@@ -833,8 +836,12 @@ function linkChange(reload) {
   console.log("New url", link);
   var redirectUrl = link.substr("https://alvinn8.github.io/s/".length);
   if (redirectUrl == "") redirectUrl = location.origin + location.pathname;
-  if (!reload && document.getElementById('linkColor').value == "#00ff00" && document.getElementById('linkTextColor').value == "#000000" && document.URL != link) history.replaceState(null, null, redirectUrl);
-  if (reload) location.replace(redirectUrl);
+  try {
+    if (!reload && document.getElementById('linkColor').value == "#00ff00" && document.getElementById('linkTextColor').value == "#000000" && document.URL != link) history.replaceState(null, null, redirectUrl);
+    if (reload) location.replace(redirectUrl);
+  } catch(e) {
+    displayError("Kunde inte byta länk: "+ e);
+  }
 }
 
 function calcSeconds() {
