@@ -1,4 +1,24 @@
 {
   "lessons": [],
-  "days": []
+  "days": [{
+    "start": 530,
+    "end": 730,
+    "classroom": "G39",
+    "subject": "Svenska Nationella Prov Läsförståelse",
+    "date": {
+      "month": 3,
+      "date": 10
+    },
+    "note": "Tips: Försök gissa vilka frågor som kommer komma på texten. OBS: Dagen fortsätter enligt schema efter np, det ser dock inte ut så på s hemsidan men vi har lektioner efter. Lycka till!"
+  }, {
+    "start": 530,
+    "end": 730,
+    "classroom": "G39",
+    "subject": "Svenska Nationella Prov Skriv",
+    "date": {
+      "month": 3,
+      "date": 12
+    },
+    "note": "Tips: Tänk på mottagaren! OBS: Dagen fortsätter enligt schema efter np, det ser dock inte ut så på s hemsidan men vi har lektioner efter. Lycka till!"
+  }]
 }
