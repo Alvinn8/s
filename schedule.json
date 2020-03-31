@@ -121,8 +121,7 @@
                 "subject": "Svenska",
                 "start": 650,
                 "end": 705,
-                "classroom": "G38",
-                "material": "Svenska Bok"
+                "classroom": "G38"
             },
             {
                 "subject": "Lunch",
@@ -194,8 +193,7 @@
                 "subject": "Svenska",
                 "start": 890,
                 "end": 945,
-                "classroom": "G39",
-                "material": "Svenska Bok"
+                "classroom": "G39"
             }
         ]
     },
@@ -213,8 +211,7 @@
                 "start": 540,
                 "end": 595,
                 "subject": "Svenska",
-                "classroom": "G38",
-                "material": "Svenska Bok"
+                "classroom": "G38"
             },
             {
                 "start": 610,
