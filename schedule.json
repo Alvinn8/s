@@ -25,8 +25,8 @@
             },
             {
                 "subject": "Lunch",
-                "start": 730,
-                "end": 770,
+                "start": 740,
+                "end": 780,
                 "classroom": "Stora Matsalen",
                 "isDisabled": true
             },
@@ -72,9 +72,9 @@
             },
             {
                 "subject": "Lunch",
-                "start": 745,
-                "end": 785,
-                "classroom": "Lilla Matsalen",
+                "start": 740,
+                "end": 780,
+                "classroom": "Stora Matsalen",
                 "isDisabled": true
             },
             {
@@ -118,17 +118,17 @@
                 "material": "NO Skrivbok och Textbok (Om du har NO-labb)"
             },
             {
-                "subject": "Svenska",
-                "start": 650,
-                "end": 705,
-                "classroom": "G38"
+                "subject": "Lunch",
+                "start": 655,
+                "end": 695,
+                "classroom": "Stora Matsalen",
+                "isDisabled": true
             },
             {
-                "subject": "Lunch",
-                "start": 710,
+                "subject": "Svenska",
+                "start": 695,
                 "end": 750,
-                "classroom": "Lilla Matsalen",
-                "isDisabled": true
+                "classroom": "G38"
             },
             {
                 "subject": "Spanska",
@@ -163,18 +163,18 @@
                 "classroom": "Bildsalen"
             },
             {
-                "subject": "Lunch",
-                "start": 710,
-                "end": 750,
-                "classroom": "Stora Matsalen",
-                "isDisabled": true
-            },
-            {
                 "subject": "SO",
-                "start": 750,
-                "end": 810,
+                "start": 715,
+                "end": 770,
                 "classroom": "G39",
                 "material": "SO Skrivbok"
+            },
+            {
+                "subject": "Lunch",
+                "start": 770,
+                "end": 810,
+                "classroom": "Mini Matsalen",
+                "isDisabled": true
             },
             {
                 "subject": "Matematik",
@@ -229,15 +229,15 @@
             },
             {
                 "subject": "Lunch",
-                "start": 755,
-                "end": 795,
-                "classroom": "Lilla Matsalen",
+                "start": 765,
+                "end": 805,
+                "classroom": "Mini Matsalen",
                 "isDisabled": true
             },
             {
                 "subject": "Musik",
-                "start": 800,
-                "end": 850,
+                "start": 805,
+                "end": 855,
                 "classroom": "N06"
             }
         ]
