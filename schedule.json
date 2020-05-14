@@ -33,7 +33,7 @@
             {
                 "subject": "Träslöjd",
                 "start": 780,
-                "end": 920,
+                "end": 905,
                 "classroom": "Träslöjdsalen (G01)"
             }
         ]
@@ -163,18 +163,18 @@
                 "classroom": "Bildsalen"
             },
             {
-                "subject": "SO",
-                "start": 715,
-                "end": 770,
-                "classroom": "G39",
-                "material": "SO Skrivbok"
-            },
-            {
                 "subject": "Lunch",
-                "start": 770,
-                "end": 810,
+                "start": 710,
+                "end": 750,
                 "classroom": "Mini Matsalen",
                 "isDisabled": true
+            },
+            {
+                "subject": "SO",
+                "start": 755,
+                "end": 810,
+                "classroom": "G39",
+                "material": "SO Skrivbok"
             },
             {
                 "subject": "Matematik",
