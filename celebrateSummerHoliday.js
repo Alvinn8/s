@@ -24,7 +24,7 @@ class Particle {
     }
     draw() {
         this.element.style.left = this.x + "px";
-        this.element.style.top = this.y;
+        this.element.style.top = this.y + "px";
         this.x += this.velX;
         this.y += this.velY;
         this.life += 1;
@@ -49,7 +49,7 @@ class Particle {
 var ballonColors = ["ec2441","2441ec", "ecec41"];
 class Ballon {
     constructor() {
-        this.x = Math.floor(Math.random()*window.innerWidth);
+        this.x = Math.floor(Math.random()*(window.innerWidth - 56));
         this.y = window.innerHeight;
         this.color = ballonColors[Math.floor(Math.random()* ballonColors.length)];
         this.element = document.createElement("div");
@@ -62,7 +62,7 @@ class Ballon {
     }
     draw() {
         this.element.style.left = this.x + "px";
-        this.element.style.top = this.y;
+        this.element.style.top = this.y + "px";
         this.y -= 5;
         if (this.y + this.element.offsetHeight < 0)
             this.remove();
