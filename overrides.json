@@ -1,15 +1,4 @@
 {
   "lessons": [],
-  "days": [
-    {
-      "date": {
-        "month": 6,
-        "date": 5
-      },
-      "subject": "Skolavslutning",
-      "start": 600,
-      "end": 900,
-      "classroom": "G38"
-    }
-  ]
+  "days": []
 }
