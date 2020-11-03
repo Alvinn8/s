@@ -144,7 +144,7 @@ function calcMinutes() {
 
   updatedAt = nowTime();
 
-  if (new Date().getTime() > new Date("Jun 5 2020 15:00:00").getTime()/* && new Date().getTime() < new Date("Aug 20 2020").getTime() */&& typeof celebrateGo == "function") celebrateGo();
+  // if (new Date().getTime() > new Date("Jun 5 2020 15:00:00").getTime()/* && new Date().getTime() < new Date("Aug 20 2020").getTime() */&& typeof celebrateGo == "function") celebrateGo();
 
   var lessons = mdata[0].lessons;
 
